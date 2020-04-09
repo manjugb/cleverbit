@@ -22,6 +22,11 @@ Examples:
 |https://www.xe.com/currencyconverter|Chrome|XE Currency Converter - Live Rates|100|usd|eur|100 USD to EUR = 92.0082 Euros|test|
 |https://www.xe.com/currencyconverter|Chrome|XE Currency Converter - Live Rates|100|USD|eur|100 USD to EUR = 92.0082 Euros|test|
 |https://www.xe.com/currencyconverter|Chrome|XE Currency Converter - Live Rates|100|inr|eur|100 USD to EUR = 92.0082 Euros|test|
+|https://www.xe.com/currencyconverter|Chrome|XE Currency Converter - Live Rates|100|usd|eur|100 USD to EUR = 92.0082 Euros|test|
+|https://www.xe.com/currencyconverter|Chrome|XE Currency Converter - Live Rates|1.5|USD|eur|100 USD to EUR = 92.0082 Euros|test|
+|https://www.xe.com/currencyconverter|Chrome|XE Currency Converter - Live Rates|0.5|inr|eur|100 USD to EUR = 92.0082 Euros|test|
+|https://www.xe.com/currencyconverter|Chrome|XE Currency Converter - Live Rates|-1|inr|eur|100 USD to EUR = 92.0082 Euros|test|
+
 
 
 Scenario Outline: Closing Chrome

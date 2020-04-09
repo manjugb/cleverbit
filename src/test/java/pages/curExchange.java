@@ -83,6 +83,8 @@ public class curExchange extends BasePage {
 	@FindBy(how=How.CSS,using="div.GradientStyled-cppXvn.dGZPbD.gradient:nth-child(2) div.CenterpieceContainer-dSIInE.jBdjhw main.Main-qeYMh.hqxsYs:nth-child(3) div.sc-AxheI.fniENO div.ConverterContainer-cnPALV.CustomConverterContainer-dQlrWq.jvifoo div.Wrapper-jDUUyL.jwmWMe div.RowContainer-jiJByP.eOAMnW div.converterform-wrapper.converterForm form.Form-qfhCc.sc-AxmLO.gCBjtB div.converterform-field-wrap:nth-child(2) div.css-1pcexqc-container.converterform-dropdown div.css-ty0g2a-control.converterform-dropdown__control:nth-child(1) div.css-1hwfws3.converterform-dropdown__value-container.converterform-dropdown__value-container--has-value > div.CurrencyInputWrapper-Djuqw.fmFlNB")
 	WebElement elmsourcelist;
 	
+	//Type
+	
 	//select list
 	
 

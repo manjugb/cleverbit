@@ -79,8 +79,8 @@ public class curExchangeSteps extends DriverHandler{
 	}
 	
 	public void enterText_source(String sourText) throws Throwable{
-	
-        WebElement elminputText = wd.findElement(By.xpath("//*[@id=\"converterForm\"]/form/div[2]/div/div/div[1]/div[2]"));
+		//*[@id="from"]
+        WebElement elminputText = wd.findElement(By.xpath("//*[@id=\"from\"]"));
         Actions action = new Actions(wd);
         action.moveToElement(elminputText).perform(); 
 		WebDriverWait wait = new WebDriverWait(wd, 30);
@@ -174,7 +174,7 @@ public class curExchangeSteps extends DriverHandler{
 	
 	public void enterText_dest(String sourText) throws Throwable{
 		
-       WebElement elminputText = wd.findElement(By.xpath("//*[@id=\"converterForm\"]/form/div[3]/div/div/div[1]/div[2]"));
+       WebElement elminputText = wd.findElement(By.xpath("//*[@id=\"to\"]"));
        Actions action = new Actions(wd);
        action.moveToElement(elminputText).perform(); 
 		WebDriverWait wait = new WebDriverWait(wd, 30);

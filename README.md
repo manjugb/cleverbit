@@ -1,0 +1,19 @@
+# ConvertExchange
+# Getting Started
+
+# Prerequisites
+  -What things you need to install the software and how to install them java and maven needs to be install before running this maven project http://maven.apache.org/install.html https://www.java.com/en/
+
+# Command Line:
+Download this project unzip and save into local folder where maven and java installed on window command line go to folder run mvn clean test
+
+# Ecliplse:
+Install spring-boot from eclipse market to run from spring-boot
+Note:Make sure M2E Intalled in Eclipse,but this should come while installed eclipse Download project from this repository 1.open Eclipse create workspace 2.File->Open->Import->Existing Maven Project and click on next 3.successfully import 4.Right Click on Project->Run as->Maven Test
+
+# Jenkins Steps Build:
+
+1.Click on New job 2.Write Desc and choose maven project(note:if maven project is not availble, try install from manage jenkins -> Manage Plugins) 3.Go to build option enter root path with pom.xml 4.save and run build
+
+
+   

@@ -2,15 +2,17 @@ package pages;
 
 
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.junit.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class curExchange extends BasePage {
@@ -32,12 +34,19 @@ public class curExchange extends BasePage {
 	WebElement elmAmount;
 
 	String elmSeldescur;
-	// sel source currency
-	@FindBy(how = How.XPATH, using = "//input[@name='From']")
+	// svg source currency
+	@FindBy(how = How.XPATH, using = "/html[1]/body[1]/div[1]/div[2]/div[2]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[2]/div[1]")
+	public
 	WebElement elmSelsourcecur;
-
+	
+	//TypeText source
+	@FindBy(how=How.XPATH,using="//div[@class=CurrencyInputWrapper-Djuqw fmFlNB]")
+	public
+	WebElement elmsourtext;
+	
 	// sel dest currency
-	@FindBy(how = How.XPATH, using = "//input[@name='To']")
+	@FindBy(how = How.XPATH, using = "/html[1]/body[1]/div[1]/div[2]/div[2]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[3]/div[1]/div[1]/div[2]/div[1]")
+	public
 	WebElement elmDestCur;
 	// click calc
 	@FindBy(how = How.XPATH, using = "//button[@class='OldButton-jvvAjr SubmitButton-fCPQGw ilGkLV submitButton']")
@@ -70,22 +79,29 @@ public class curExchange extends BasePage {
 	// amout convertion rate
 	@FindBy(how = How.XPATH, using = "//div[@class='converterresult-flexCon']")
 	WebElement elmAmountConvResults;
+	
+	@FindBy(how=How.CSS,using="div.GradientStyled-cppXvn.dGZPbD.gradient:nth-child(2) div.CenterpieceContainer-dSIInE.jBdjhw main.Main-qeYMh.hqxsYs:nth-child(3) div.sc-AxheI.fniENO div.ConverterContainer-cnPALV.CustomConverterContainer-dQlrWq.jvifoo div.Wrapper-jDUUyL.jwmWMe div.RowContainer-jiJByP.eOAMnW div.converterform-wrapper.converterForm form.Form-qfhCc.sc-AxmLO.gCBjtB div.converterform-field-wrap:nth-child(2) div.css-1pcexqc-container.converterform-dropdown div.css-ty0g2a-control.converterform-dropdown__control:nth-child(1) div.css-1hwfws3.converterform-dropdown__value-container.converterform-dropdown__value-container--has-value > div.CurrencyInputWrapper-Djuqw.fmFlNB")
+	WebElement elmsourcelist;
+	
+	//select list
+	
 
-//Verifying the title of page
-
-	/*public void verify_Title_page(String exptitle) throws Throwable{
-		
-		 String actualTitle = driver.getTitle();
-         Assert.assertEquals(actualTitle, exptitle);
-		if(actTitle.equalsIgnoreCase(exptitle)) {
-		
-		Assert.assertEquals("Condition true", actTitle, exptitle);
-		}
-		else {
-			Assert.assertNotEquals(exptitle,exptitle);
-		}
-		
-}*/
+//Home Page Text validations
+	
+	/*public void select_source_list() throws Throwable{
+	elmsourcelist.click();
+    Select select = new Select(elmsourcelist);
+    //((WebElement) select).sendKeys("Text_From_Your_Listbox");
+	elmsourcelist.select("Text_From_Your_Listbox");
+	}
+	*/
+ /* //select source
+  public void select_currency(String selCur) throws Throwable{
+	//span[@class='dropdown-currencyCode'][contains(text(),'USD')]
+	//span[@class='dropdown-currencyName']//span[contains(text(),'US Dollar')]
+	  
+	  driver.findElement(By.xpath("//span[@class='dropdown-currencyCode']//span[text()='"+selCur+"']")).click();
+  }*/
 
 	// Enter Amount
 	public void enter_key(String keyword) throws Throwable {
@@ -100,27 +116,45 @@ public class curExchange extends BasePage {
 	// Enter or choose source currency
 	public void enter_key_source(String keyword) throws Throwable {
 		if (elmSelsourcecur.isDisplayed()) {
+			elmSelsourcecur.click();
 			elmSelsourcecur.sendKeys(keyword);
 		} else {
 			System.out.println("Element " + elmSelsourcecur + " Not Found");
 		}
 
 	}
-
-	// Press Enter
-	public void press_enter_source() throws Throwable {
-		if (elmSelsourcecur.isDisplayed()) {
-			elmSelsourcecur.sendKeys(Keys.ENTER);
+	public void enter_key_sources(String keyword) throws Throwable {
+		if (elmsourtext.isDisplayed()) {
+			elmsourtext.click();
+			elmsourtext.sendKeys(keyword);
 		} else {
-			System.out.println("Element " + elmSelsourcecur + " Not Found");
+			System.out.println("Element " + elmsourtext + " Not Found");
 		}
 
 	}
+	
+	
+
+	// Press Enter
+	public void press_enter_source() throws Throwable {
+		
+			Actions action = new Actions(driver);
+	        action.moveToElement(elmSelsourcecur).perform(); 
+	        WebDriverWait wait = new WebDriverWait(driver, 30);
+	        wait.until(ExpectedConditions.elementToBeClickable(elmSelsourcecur));
+	        elmSelsourcecur.click();
+			
+		}
+		
+		
+
+	
 
 	// Enter or choose dest currency
 	public void enter_key_dest(String keyword) throws Throwable {
 		if (elmDestCur.isDisplayed()) {
-			elmDestCur.sendKeys(keyword);
+			elmDestCur.click();
+			//elmDestCur.sendKeys(keyword);
 		} else {
 			System.out.println("Element " + elmDestCur + " Not Found");
 		}
@@ -130,12 +164,14 @@ public class curExchange extends BasePage {
 	// Press Enter
 	public void press_enter_dest() throws Throwable {
 		if (elmDestCur.isDisplayed()) {
-			elmDestCur.sendKeys(Keys.ENTER);
+			//elmDestCur.sendKeys(Keys.ENTER);
 		} else {
 			System.out.println("Element " + elmDestCur + " Not Found");
 		}
 
 	}
+	
+	
 
 	// Click on calc button
 	public void clk_calcbut() throws Throwable {
@@ -160,10 +196,12 @@ public class curExchange extends BasePage {
 
 	public void single_results(String expSingleResults) throws Throwable {
 		String actSingRes = elmResults.getText().toString();
-		if (elmResults.isEnabled() && actSingRes.equalsIgnoreCase(expSingleResults)) {
-			Assert.assertEquals(expSingleResults, actSingRes);
+		if (actSingRes.equalsIgnoreCase(expSingleResults)) {
+			
+
+			Assert.assertEquals("Results Matched", expSingleResults, actSingRes);
 		} else {
-			Assert.assertNotEquals(expSingleResults, actSingRes);
+			Assert.assertEquals("Results Not Matched", expSingleResults, actSingRes);
 		}
 
 	}
@@ -258,6 +296,8 @@ public class curExchange extends BasePage {
 
 		}
 	}
+	
+	
 
 	@Override
 	public boolean isPageLoaded() {

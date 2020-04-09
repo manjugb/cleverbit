@@ -14,7 +14,7 @@ import pages.DriverHandler;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/currencyConverter/1.searchKey_YouTube.feature"},
+        features = {"src/test/resources/currencyConverter/"},
         //format = {"json:target/cucumber.json", "html:target/site/cucumber-pretty"},
         glue = {"stepdefinitons"},
         //~ will skip the features with that specific tag

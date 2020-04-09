@@ -19,5 +19,8 @@ Note:Make sure M2E Intalled in Eclipse,but this should come while installed ecli
 
 1.Click on New job 2.Write Desc and choose maven project(note:if maven project is not availble, try install from manage jenkins -> Manage Plugins) 3.Go to build option enter root path with pom.xml 4.save and run build
 
+# Reports
+Reports can be generated on the folder "/report"
+
 
    

@@ -4,13 +4,9 @@ Scenario Outline: Validate the page title,amount,source and target conversion va
 
 Given I Go to "<url>" on "<Browser>"
 Then I Verify Title of the Page "<pgtitle>"
-Then I Wait for some Time
 Then I Enter Amount to Convert "<amount>"
-Then I Wait for some Time
 And I Select Source Currency "<souCurrency>"
-Then I Wait for some Time
 And I Choose Destination Currency "<destCurrency>"
-Then I Wait for some Time
 And I Click on CalcButton
 Then I Verify h1 heading result "<expSingleValue>"
 Then I Verify Amount Conversion Value "<amcnvalve>"

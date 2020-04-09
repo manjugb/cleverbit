@@ -72,22 +72,30 @@ public class curExchangeSteps extends DriverHandler{
         wait.until(ExpectedConditions.elementToBeClickable(elmInput));
         
         elmInput.click();
-       
-      //*[@id="converterForm"]/form/div[2]/div/div/div[1]/div[2]
-        WebElement elm1 = wd.findElement(By.xpath("//*[@id=\"converterForm\"]/form/div[2]/div/div/div[1]/div[2]"));
-			String tag = elm1.getTagName();
-			String tex = elm1.getText();
-			System.out.println(""+tag+" : "+tex+" ");
-		 //WebElement elem = wd.findElement(By.xpath("//span[@class='dropdown-currencyCode']//span[text(),'"+souCurrName+"']")).click();
+        enterText(souCurrName);
+        select_currency(souCurrName);
+      
+		/* //WebElement elem = wd.findElement(By.xpath("//span[@class='dropdown-currencyCode']//span[text(),'"+souCurrName+"']")).click();
 		 new WebDriverWait(wd,30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(), \"" + souCurrName + "\")]"))).click();
-		 //Select dropdown = new Select(ele);
-		 //dropdown.selectByValue(souCurrName); 
-		 
-		 //WebElement elmnt=wd.findElement(By.xpath(".//*[@id='MainLayout']/div/div[2]/div/div/div[3]/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[3]/div/div[2]/div/div/div[1]/div/div/div/div/div/div[4]/span/span"));
-
-		 //elmnt.click(); 
-		 
+		*/ 
 		     
+	}
+	
+	public void enterText(String sourText) throws Throwable{
+	
+        WebElement elminputText = wd.findElement(By.xpath("//*[@id=\"converterForm\"]/form/div[2]/div/div/div[1]/div[2]"));
+        Actions action = new Actions(wd);
+        action.moveToElement(elminputText).perform(); 
+		WebDriverWait wait = new WebDriverWait(wd, 30);
+        wait.until(ExpectedConditions.elementToBeClickable(elminputText));
+        action.sendKeys(sourText);
+        /*String script = "arguments[0].setAttribute('div',  ' + sourText + ');"
+        		((JavascriptExecutor) wd).executeScript(script, elminputText);
+        */
+        
+        //elminputText.click();
+        //elminputText.sendKeys(sourText);
+			
 	}
 
 
@@ -96,9 +104,9 @@ public class curExchangeSteps extends DriverHandler{
 	//div[contains(text(),’share’)]
 	//span[@class='dropdown-currencyName']//span[contains(text(),'US Dollar')]
 	//*[@id="converterForm"]/form/div[2]/div/div/div[1]/div[1]/div/span[2]/span
-	    List<WebElement> currencies = wd.findElements(By.tagName("span"));
+	    //List<WebElement> currencies = wd.findElements(By.tagName("span"));
 	    //List<WebElement> print4 = wd.findElements(By.xpath("//span[contains(@class, '" +in_strChapterName+ "')]"));
-	    //List<WebElement> options = elmInput.findElements(By.tagName("//span[text()='"+strCurrency+"']"));
+	    List<WebElement> currencies = elmInput.findElements(By.tagName("//span[text()='"+strCurrency+"']"));
 	    //System.out.println(spans);
 	    for(WebElement currency: currencies)
 	    {
@@ -107,7 +115,8 @@ public class curExchangeSteps extends DriverHandler{
 	            action.moveToElement(currency).perform(); 
 	    		WebDriverWait wait = new WebDriverWait(wd, 30);
 	            wait.until(ExpectedConditions.elementToBeClickable(currency));
-	            currency.click();
+	            //currency.click();
+	            action.sendKeys(currency);
 	            break;
 	        }
 	    }

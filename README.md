@@ -7,6 +7,7 @@ Selenium PageFactory. The PageFactory Class in Selenium is an extension to the P
 
 # Prerequisites
   -What things you need to install the software and how to install them java and maven needs to be install before running this maven project http://maven.apache.org/install.html https://www.java.com/en/
+  install chrom and firefox in order to run the scripts 
 
 # Command Line:
 Download this project unzip and save into local folder where maven and java installed on window command line go to folder run mvn clean test

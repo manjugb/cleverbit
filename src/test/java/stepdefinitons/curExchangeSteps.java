@@ -263,9 +263,9 @@ public class curExchangeSteps extends DriverHandler {
 	}
 
 	// Verify Single value currency
-	@Then("^I Verify h1 heading result \"([^\"]*)\"$")
-	public void h1_heading_result(String expSingleValue) throws Throwable {
-		new curExchange(wd).single_results(expSingleValue);
+	@Then("^I Verify amount \"([^\"]*)\" with \"([^\"]*)\" to \"([^\"]*)\" currency \"([^\"]*)\"$")
+	public void h1_heading_result(String num,String sour,String dest,String curName) throws Throwable {
+		new curExchange(wd).single_results(num,sour,dest,curName);
 	}
 
 	// Verify single_cur_dest_value
@@ -286,9 +286,10 @@ public class curExchangeSteps extends DriverHandler {
 		if (actTitle.equalsIgnoreCase(expText)) {
 
 			Assert.assertEquals("Title Matched", actTitle, expText);
+			System.out.println("Page Title "+actTitle+" "+expText+"Matched");
 		} else {
 			Assert.assertNotEquals("Title Not Matched", actTitle, expText);
-			Assert.assertEquals("Title Not Matched", actTitle, expText);
+			System.out.println("Page Title "+actTitle+" "+expText+"Not Matched");
 		}
 	}
 

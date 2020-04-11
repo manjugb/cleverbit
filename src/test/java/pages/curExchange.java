@@ -1,7 +1,5 @@
 package pages;
 
-
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -16,7 +14,6 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 
 public class curExchange extends BasePage {
 
@@ -39,18 +36,15 @@ public class curExchange extends BasePage {
 	String elmSeldescur;
 	// svg source currency
 	@FindBy(how = How.XPATH, using = "/html[1]/body[1]/div[1]/div[2]/div[2]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[2]/div[1]")
-	public
-	WebElement elmSelsourcecur;
-	
-	//TypeText source
-	@FindBy(how=How.XPATH,using="//div[@class=CurrencyInputWrapper-Djuqw fmFlNB]")
-	public
-	WebElement elmsourtext;
-	
+	public WebElement elmSelsourcecur;
+
+	// TypeText source
+	@FindBy(how = How.XPATH, using = "//div[@class=CurrencyInputWrapper-Djuqw fmFlNB]")
+	public WebElement elmsourtext;
+
 	// sel dest currency
 	@FindBy(how = How.XPATH, using = "/html[1]/body[1]/div[1]/div[2]/div[2]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[3]/div[1]/div[1]/div[2]/div[1]")
-	public
-	WebElement elmDestCur;
+	public WebElement elmDestCur;
 	// click calc
 	@FindBy(how = How.XPATH, using = "//button[@class='OldButton-jvvAjr SubmitButton-fCPQGw ilGkLV submitButton']")
 	WebElement elmCLickCalc;
@@ -82,31 +76,31 @@ public class curExchange extends BasePage {
 	// amout convertion rate
 	@FindBy(how = How.XPATH, using = "//div[@class='converterresult-flexCon']")
 	WebElement elmAmountConvResults;
-	
-	@FindBy(how=How.CSS,using="div.GradientStyled-cppXvn.dGZPbD.gradient:nth-child(2) div.CenterpieceContainer-dSIInE.jBdjhw main.Main-qeYMh.hqxsYs:nth-child(3) div.sc-AxheI.fniENO div.ConverterContainer-cnPALV.CustomConverterContainer-dQlrWq.jvifoo div.Wrapper-jDUUyL.jwmWMe div.RowContainer-jiJByP.eOAMnW div.converterform-wrapper.converterForm form.Form-qfhCc.sc-AxmLO.gCBjtB div.converterform-field-wrap:nth-child(2) div.css-1pcexqc-container.converterform-dropdown div.css-ty0g2a-control.converterform-dropdown__control:nth-child(1) div.css-1hwfws3.converterform-dropdown__value-container.converterform-dropdown__value-container--has-value > div.CurrencyInputWrapper-Djuqw.fmFlNB")
+
+	@FindBy(how = How.CSS, using = "div.GradientStyled-cppXvn.dGZPbD.gradient:nth-child(2) div.CenterpieceContainer-dSIInE.jBdjhw main.Main-qeYMh.hqxsYs:nth-child(3) div.sc-AxheI.fniENO div.ConverterContainer-cnPALV.CustomConverterContainer-dQlrWq.jvifoo div.Wrapper-jDUUyL.jwmWMe div.RowContainer-jiJByP.eOAMnW div.converterform-wrapper.converterForm form.Form-qfhCc.sc-AxmLO.gCBjtB div.converterform-field-wrap:nth-child(2) div.css-1pcexqc-container.converterform-dropdown div.css-ty0g2a-control.converterform-dropdown__control:nth-child(1) div.css-1hwfws3.converterform-dropdown__value-container.converterform-dropdown__value-container--has-value > div.CurrencyInputWrapper-Djuqw.fmFlNB")
 	WebElement elmsourcelist;
-	
-	//Type
-	
-	//select list
-	
+
+	// Type
+
+	// select list
 
 //Home Page Text validations
-	
-	/*public void select_source_list() throws Throwable{
-	elmsourcelist.click();
-    Select select = new Select(elmsourcelist);
-    //((WebElement) select).sendKeys("Text_From_Your_Listbox");
-	elmsourcelist.select("Text_From_Your_Listbox");
-	}
-	*/
- /* //select source
-  public void select_currency(String selCur) throws Throwable{
-	//span[@class='dropdown-currencyCode'][contains(text(),'USD')]
-	//span[@class='dropdown-currencyName']//span[contains(text(),'US Dollar')]
-	  
-	  driver.findElement(By.xpath("//span[@class='dropdown-currencyCode']//span[text()='"+selCur+"']")).click();
-  }*/
+
+	/*
+	 * public void select_source_list() throws Throwable{ elmsourcelist.click();
+	 * Select select = new Select(elmsourcelist); //((WebElement)
+	 * select).sendKeys("Text_From_Your_Listbox");
+	 * elmsourcelist.select("Text_From_Your_Listbox"); }
+	 */
+	/*
+	 * //select source public void select_currency(String selCur) throws Throwable{
+	 * //span[@class='dropdown-currencyCode'][contains(text(),'USD')]
+	 * //span[@class='dropdown-currencyName']//span[contains(text(),'US Dollar')]
+	 * 
+	 * driver.findElement(By.xpath(
+	 * "//span[@class='dropdown-currencyCode']//span[text()='"+selCur+"']")).click()
+	 * ; }
+	 */
 
 	// Enter Amount
 	public void enter_key(String keyword) throws Throwable {
@@ -128,6 +122,7 @@ public class curExchange extends BasePage {
 		}
 
 	}
+
 	public void enter_key_sources(String keyword) throws Throwable {
 		if (elmsourtext.isDisplayed()) {
 			elmsourtext.click();
@@ -137,29 +132,23 @@ public class curExchange extends BasePage {
 		}
 
 	}
-	
-	
 
 	// Press Enter
 	public void press_enter_source() throws Throwable {
-		
-			Actions action = new Actions(driver);
-	        action.moveToElement(elmSelsourcecur).perform(); 
-	        WebDriverWait wait = new WebDriverWait(driver, 30);
-	        wait.until(ExpectedConditions.elementToBeClickable(elmSelsourcecur));
-	        elmSelsourcecur.click();
-			
-		}
-		
-		
 
-	
+		Actions action = new Actions(driver);
+		action.moveToElement(elmSelsourcecur).perform();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(elmSelsourcecur));
+		elmSelsourcecur.click();
+
+	}
 
 	// Enter or choose dest currency
 	public void enter_key_dest(String keyword) throws Throwable {
 		if (elmDestCur.isDisplayed()) {
 			elmDestCur.click();
-			//elmDestCur.sendKeys(keyword);
+			// elmDestCur.sendKeys(keyword);
 		} else {
 			System.out.println("Element " + elmDestCur + " Not Found");
 		}
@@ -169,14 +158,12 @@ public class curExchange extends BasePage {
 	// Press Enter
 	public void press_enter_dest() throws Throwable {
 		if (elmDestCur.isDisplayed()) {
-			//elmDestCur.sendKeys(Keys.ENTER);
+			// elmDestCur.sendKeys(Keys.ENTER);
 		} else {
 			System.out.println("Element " + elmDestCur + " Not Found");
 		}
 
 	}
-	
-	
 
 	// Click on calc button
 	public void clk_calcbut() throws Throwable {
@@ -199,22 +186,30 @@ public class curExchange extends BasePage {
 
 	// Verify h1 heading Resultslt
 
-	public void single_results(String expSingleResults) throws Throwable {
+	public void single_results(String amt,String source,String dest,String curName) throws Throwable {
 		String actSingRes = elmResults.getText().toString();
-		if (actSingRes.equalsIgnoreCase(expSingleResults)) {
-			Assert.assertEquals("Results Matched", expSingleResults, actSingRes);
-			System.out.println("Results "+actSingRes+" Matched");
+		
+		if (actSingRes.contains(amt) && actSingRes.contains(source) && actSingRes.contains(dest) && actSingRes.contains("=") 
+				&& actSingRes.matches("^[-+]?[0-9]*\\.?[0-9]+$") && actSingRes.contains(curName)) {
+			assertTrue(actSingRes.contains(amt));
+			assertTrue(actSingRes.contains(source));
+			assertTrue(actSingRes.contains(dest));
+			assertTrue(actSingRes.contains("="));
+			assertTrue(actSingRes.matches("^[-+]?[0-9]*\\.?[0-9]+$"));
+			System.out.println("Results " + actSingRes + " Matched");
 		} else {
-			Assert.assertNotEquals("Results Not Matched", expSingleResults, actSingRes);
-			System.out.println("Results "+actSingRes+"Not Matched");
+			assertFalse(actSingRes.contains(amt));
+			assertFalse(actSingRes.contains(source));
+			assertFalse(actSingRes.contains(dest));
+			assertFalse(actSingRes.contains("="));
+			System.out.println("Results " + actSingRes + "Not Matched");
 		}
-
 	}
 
 //Verify Single Currency destination value
 	public void single_cur_dest_value(String expDestvalue) throws Throwable {
 		String actDesVal = elmDestValue.getText().toString();
-		if (elmResults.isDisplayed()) {
+		if (actDesVal.equalsIgnoreCase(expDestvalue)) {
 			Assert.assertEquals(expDestvalue, actDesVal);
 		} else {
 			Assert.assertNotEquals(expDestvalue, actDesVal);
@@ -225,10 +220,12 @@ public class curExchange extends BasePage {
 	// Verify Single Currency destination value
 	public void single_cur_source_value(String expSourcevalue) throws Throwable {
 		String actDesVal = elmSourceValue.getText().toString();
-		if (elmResults.isDisplayed()) {
+		if (actDesVal.equalsIgnoreCase(expSourcevalue)) {
 			Assert.assertEquals(elmSourceValue, actDesVal);
+			System.out.println("Results " + actDesVal + ""+expSourcevalue+" Matched");
 		} else {
 			Assert.assertNotEquals(elmSourceValue, actDesVal);
+			System.out.println("Results " + actDesVal + ""+expSourcevalue+"Not Matched");
 		}
 
 	}
@@ -249,8 +246,10 @@ public class curExchange extends BasePage {
 		String acth1mainhead = elmhead.getText().toString();
 		if (elmhead.isEnabled()) {
 			Assert.assertEquals(h1mainhtitle, acth1mainhead);
+			System.out.println("Main heading title: " + acth1mainhead + "Found ");
 		} else {
 			Assert.assertNotEquals(h1mainhtitle, acth1mainhead);
+			System.out.println("Main heading title   " + acth1mainhead + "Not Found");
 		}
 
 	}
@@ -258,16 +257,16 @@ public class curExchange extends BasePage {
 	// Verify Amount Conversion amount
 	public void verify_amount_convValue(String expConValue) throws Throwable {
 		String actConvAmount = elmAmountConvResults.getText().toString();
-		//text.matches("^[a-zA-Z0-9]+$")
-		if (elmAmountConvResults.isEnabled()) {
+		// text.matches("^[a-zA-Z0-9]+$")
+		if (actConvAmount.equalsIgnoreCase(expConValue)) {
 			assertTrue("Match", actConvAmount.contains(expConValue));
-			System.out.println("Amount Conversion "+elmAmountConvResults+" Results ");
+			System.out.println("Amount Conversion " + actConvAmount + " Results ");
 		} else {
 			assertFalse("Not Match", actConvAmount.contains(expConValue));
-			System.out.println("Amount Conversion: "+elmAmountConvResults+" Results ");
+			System.out.println("Amount Conversion: " + actConvAmount + " Results ");
 		}
 	}
-	
+
 	private curExchange ensurePageLoaded() {
 		waitForPageToLoad();
 		try {
@@ -304,8 +303,6 @@ public class curExchange extends BasePage {
 
 		}
 	}
-	
-	
 
 	@Override
 	public boolean isPageLoaded() {

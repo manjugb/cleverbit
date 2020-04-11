@@ -25,5 +25,5 @@ Examples:
 
 
 
-Scenario Outline: Closing Chrome
+Scenario: Closing Chrome
 Then I Close Browser

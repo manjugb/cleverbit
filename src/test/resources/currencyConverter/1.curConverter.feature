@@ -24,5 +24,12 @@ Examples:
 |https://www.xe.com/currencyconverter|Chrome|XE Currency Converter - Live Rates|0.5|inr|eur|Euros|test|
 |https://www.xe.com/currencyconverter|Chrome|XE Currency Converter - Live Rates|-1|inr|eur|Euros|test|
 
+<<<<<<< HEAD
 Scenario: Validate Currency Exchange Close on Chrome
 Then I Close Browser
+=======
+
+
+Scenario: Closing Chrome
+Then I Close Browser
+>>>>>>> a5b6668b5ddfec4259eb9e634c1cb692bf8d5599

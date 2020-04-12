@@ -25,16 +25,6 @@ Examples:
 |https://www.xe.com/currencyconverter|Chrome|XE Currency Converter - Live Rates|0.5|INR|EUR|Euros|Indian Rupee to Euro Conversion|
 |https://www.xe.com/currencyconverter|Chrome|XE Currency Converter - Live Rates|0.01|INR|EUR|Euros|Indian Rupee to Euro Conversion|
 
-<<<<<<< HEAD
-Scenario: Validate Currency Exchange Close on Chrome
-Then I Close Browser
-=======
-
 Scenario: Validate Currency Exchange Close on Chrome
 Then I Close Browser
 
-
-Scenario: Closing Chrome
-Then I Close Browser
-
->>>>>>> a75461e02321e827d6f2adeea2e12e06585684ca

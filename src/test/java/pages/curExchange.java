@@ -53,8 +53,12 @@ public class curExchange extends BasePage {
 	@FindBy(how = How.XPATH, using = "//body/div[@id='reactContainer']/div[@class='GradientStyled-cppXvn dGZPbD gradient']/div[@class='CenterpieceContainer-dSIInE jBdjhw']/main[@class='Main-qeYMh hqxsYs']/div[@class='sc-AxheI fniENO']/div[@class='ConverterContainer-cnPALV CustomConverterContainer-dQlrWq jvifoo']/div/div[@id='currencyConverter']/div[@class='RowContainer-jiJByP eOAMnW']/div[@id='converterForm']/form[@class='Form-qfhCc sc-AxmLO gCBjtB']/button[@class='OldButton-jvvAjr InverseButton-bUiBpw gyMxCe converterform-inverseButton inverseButton']/*[1]")
 	WebElement swapOption;
 	// h1 heading Results
-	@FindBy(how = How.XPATH, using = "//h1[@id='main-heading']")
+	@FindBy(how = How.XPATH, using = "//*[@id=\"converterResult\"]/div/div")
 	WebElement elmResults;
+
+	// conversion rate
+	@FindBy(how = How.XPATH, using = "//*[@id=\"converterResult\"]/div/div/div[2]")
+	WebElement elmconvRate;
 
 	// Single Currency destination value
 	@FindBy(how = How.CSS, using = "div.GradientStyled-cppXvn.dGZPbD.gradient:nth-child(2) div.CenterpieceContainer-dSIInE.jBdjhw main.Main-qeYMh.hqxsYs:nth-child(3) div.sc-AxheI.fniENO div.ConverterContainer-cnPALV.CustomConverterContainer-dQlrWq.jvifoo div.Wrapper-jDUUyL.jwmWMe div.RowContainer-jiJByP.kvCuPY:nth-child(2) div.converterresult-wrapper.converterResult section.OldRow-gYxWJD.ConverterResultInfo-bjqRmZ.jXnjSC div.OldColumn-eIZHbH.RateInfoColumn-bKHmkg.bzuvlO.second:nth-child(1) > div.sc-fzoLsD.fYZyZu:nth-child(1)")
@@ -186,23 +190,38 @@ public class curExchange extends BasePage {
 
 	// Verify h1 heading Resultslt
 
-	public void single_results(String amt,String source,String dest,String curName) throws Throwable {
+	public void single_results(String amt, String source, String dest, String curName) throws Throwable {
 		String actSingRes = elmResults.getText().toString();
-		
-		if (actSingRes.contains(amt) && actSingRes.contains(source) && actSingRes.contains(dest) && actSingRes.contains("=") 
-				&& actSingRes.matches("^[-+]?[0-9]*\\.?[0-9]+$") && actSingRes.contains(curName)) {
+
+		if (elmResults.isDisplayed()) {
+
 			assertTrue(actSingRes.contains(amt));
 			assertTrue(actSingRes.contains(source));
 			assertTrue(actSingRes.contains(dest));
 			assertTrue(actSingRes.contains("="));
-			assertTrue(actSingRes.matches("^[-+]?[0-9]*\\.?[0-9]+$"));
-			System.out.println("Results " + actSingRes + " Matched");
+
+			System.out.println("Converstion Results: " + actSingRes + " Matched");
 		} else {
 			assertFalse(actSingRes.contains(amt));
 			assertFalse(actSingRes.contains(source));
 			assertFalse(actSingRes.contains(dest));
 			assertFalse(actSingRes.contains("="));
-			System.out.println("Results " + actSingRes + "Not Matched");
+
+			System.out.println("Conversion Results: " + actSingRes + "Not Matched");
+		}
+	}
+
+	public void convRate() throws Throwable {
+		String actSingRes = elmconvRate.getText().toString();
+
+		if (actSingRes.matches("[0-9]*.[0-9]+")) {
+			assertTrue(actSingRes.matches("[0-9]*.[0-9]+"));
+
+			System.out.println("Converstion Rate: " + actSingRes + " Matched");
+		} else {
+			assertFalse(actSingRes.matches("[0-9]*.[0-9]+"));
+
+			System.out.println("Conversion Rate: " + actSingRes + "Not Matched");
 		}
 	}
 
@@ -222,10 +241,10 @@ public class curExchange extends BasePage {
 		String actDesVal = elmSourceValue.getText().toString();
 		if (actDesVal.equalsIgnoreCase(expSourcevalue)) {
 			Assert.assertEquals(elmSourceValue, actDesVal);
-			System.out.println("Results " + actDesVal + ""+expSourcevalue+" Matched");
+			System.out.println("Results " + actDesVal + "" + expSourcevalue + " Matched");
 		} else {
 			Assert.assertNotEquals(elmSourceValue, actDesVal);
-			System.out.println("Results " + actDesVal + ""+expSourcevalue+"Not Matched");
+			System.out.println("Results " + actDesVal + "" + expSourcevalue + "Not Matched");
 		}
 
 	}
@@ -256,14 +275,14 @@ public class curExchange extends BasePage {
 
 	// Verify Amount Conversion amount
 	public void verify_amount_convValue(String expConValue) throws Throwable {
-		String actConvAmount = elmAmountConvResults.getText().toString();
+		String actConvTitle = convTitle.getText().toString();
 		// text.matches("^[a-zA-Z0-9]+$")
-		if (actConvAmount.equalsIgnoreCase(expConValue)) {
-			assertTrue("Match", actConvAmount.contains(expConValue));
-			System.out.println("Amount Conversion " + actConvAmount + " Results ");
+		if (actConvTitle.equalsIgnoreCase(expConValue)) {
+			assertTrue("Match", actConvTitle.contains(expConValue));
+			System.out.println("Amount Conversion " + actConvTitle + " Results ");
 		} else {
-			assertFalse("Not Match", actConvAmount.contains(expConValue));
-			System.out.println("Amount Conversion: " + actConvAmount + " Results ");
+			assertFalse("Not Match", actConvTitle.contains(expConValue));
+			System.out.println("Amount Conversion: " + actConvTitle + "Title");
 		}
 	}
 

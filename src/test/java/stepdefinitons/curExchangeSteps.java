@@ -264,12 +264,18 @@ public class curExchangeSteps extends DriverHandler {
 
 	// Verify Single value currency
 	@Then("^I Verify amount \"([^\"]*)\" with \"([^\"]*)\" to \"([^\"]*)\" currency \"([^\"]*)\"$")
-	public void h1_heading_result(String num,String sour,String dest,String curName) throws Throwable {
-		new curExchange(wd).single_results(num,sour,dest,curName);
+	public void h1_heading_result(String num, String sour, String dest, String curName) throws Throwable {
+		new curExchange(wd).single_results(num, sour, dest, curName);
 	}
 
 	// Verify single_cur_dest_value
-	@Then("^I Verify Amount Conversion Value \"([^\"]*)\"$")
+	@Then("^I Checked Converstion Rate$")
+	public void conv_rate() throws Throwable {
+		new curExchange(wd).convRate();
+	}
+
+	// Verify single_cur_dest_value
+	@Then("^I Verify Converstion Result Title \"([^\"]*)\"$")
 	public void amt_conv_value(String expAmtValue) throws Throwable {
 		new curExchange(wd).verify_amount_convValue(expAmtValue);
 	}
@@ -286,10 +292,10 @@ public class curExchangeSteps extends DriverHandler {
 		if (actTitle.equalsIgnoreCase(expText)) {
 
 			Assert.assertEquals("Title Matched", actTitle, expText);
-			System.out.println("Page Title "+actTitle+" "+expText+"Matched");
+			System.out.println("Page Title " + actTitle + " " + expText + "Matched");
 		} else {
 			Assert.assertNotEquals("Title Not Matched", actTitle, expText);
-			System.out.println("Page Title "+actTitle+" "+expText+"Not Matched");
+			System.out.println("Page Title " + actTitle + " " + expText + "Not Matched");
 		}
 	}
 

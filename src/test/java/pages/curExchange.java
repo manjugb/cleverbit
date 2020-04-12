@@ -1,7 +1,11 @@
 package pages;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -57,7 +61,7 @@ public class curExchange extends BasePage {
 	WebElement elmResults;
 
 	// conversion rate
-	@FindBy(how = How.XPATH, using = "//*[@id=\"converterResult\"]/div/div/div[2]")
+	@FindBy(how = How.XPATH, using = "//span[@class='converterresult-toAmount']")
 	WebElement elmconvRate;
 
 	// Single Currency destination value
@@ -210,20 +214,41 @@ public class curExchange extends BasePage {
 			System.out.println("Conversion Results: " + actSingRes + "Not Matched");
 		}
 	}
+	
 
 	public void convRate() throws Throwable {
 		String actSingRes = elmconvRate.getText().toString();
+		   // regular expression for an integer number 
+       // String regex = "^[0-9]+(?:\\.[0-9]+)?$"; 
+          
+        /*// compiling regex 
+        Pattern p = Pattern.compile(regex); 
+          
+        // Creates a matcher that will match input against regex 
+        Matcher m = p.matcher(actSingRes); 
+        
+        if(m.find() && m.group().equals(actSingRes)) {
+            System.out.println(actSingRes + " is a valid float number"); }
+        
+        else {
+            System.out.println(actSingRes + " is not a valid float number"); }
+        */
+        
+		if (actSingRes.matches("^[-+]?\\d*\\.?\\d*$")) {
+			//Assert.assertThat(actSingRes.matches("^[-+]?\\d*\\.?\\d*$"));
+			assertTrue(actSingRes.matches("^[-+]?\\d*\\.?\\d*$"));
+			//assertThat(actSingRes).matches("[A-Za-z]*[ ]{3}ID: [0-9]*[ ]{3}VERSION: [0-9]*");
+		
 
-		if (actSingRes.matches("[0-9]*.[0-9]+")) {
-			assertTrue(actSingRes.matches("[0-9]*.[0-9]+"));
-
-			System.out.println("Converstion Rate: " + actSingRes + " Matched");
+			System.out.println("Converstion Rate: "+ actSingRes + " Matched");
 		} else {
-			assertFalse(actSingRes.matches("[0-9]*.[0-9]+"));
+			assertFalse(actSingRes.matches("^[-+]?\\d*\\.?\\d*$"));
 
 			System.out.println("Conversion Rate: " + actSingRes + "Not Matched");
-		}
+		
 	}
+        }
+	    
 
 //Verify Single Currency destination value
 	public void single_cur_dest_value(String expDestvalue) throws Throwable {

@@ -65,11 +65,11 @@ public class curExchange extends BasePage {
 	WebElement elmconvRate;
 
 	// Single Currency destination value
-	@FindBy(how = How.CSS, using = "div.GradientStyled-cppXvn.dGZPbD.gradient:nth-child(2) div.CenterpieceContainer-dSIInE.jBdjhw main.Main-qeYMh.hqxsYs:nth-child(3) div.sc-AxheI.fniENO div.ConverterContainer-cnPALV.CustomConverterContainer-dQlrWq.jvifoo div.Wrapper-jDUUyL.jwmWMe div.RowContainer-jiJByP.kvCuPY:nth-child(2) div.converterresult-wrapper.converterResult section.OldRow-gYxWJD.ConverterResultInfo-bjqRmZ.jXnjSC div.OldColumn-eIZHbH.RateInfoColumn-bKHmkg.bzuvlO.second:nth-child(1) > div.sc-fzoLsD.fYZyZu:nth-child(1)")
+	@FindBy(how = How.XPATH, using = "//*[@id=\"converterResult\"]/section/div[1]/div[1]")
 	WebElement elmDestValue;
 
 	// Single Currency Source value
-	@FindBy(how = How.CSS, using = "div.GradientStyled-cppXvn.dGZPbD.gradient:nth-child(2) div.CenterpieceContainer-dSIInE.jBdjhw main.Main-qeYMh.hqxsYs:nth-child(3) div.sc-AxheI.fniENO div.ConverterContainer-cnPALV.CustomConverterContainer-dQlrWq.jvifoo div.Wrapper-jDUUyL.jwmWMe div.RowContainer-jiJByP.kvCuPY:nth-child(2) div.converterresult-wrapper.converterResult section.OldRow-gYxWJD.ConverterResultInfo-bjqRmZ.jXnjSC div.OldColumn-eIZHbH.RateInfoColumn-bKHmkg.bzuvlO.second:nth-child(1) > div.sc-fzoLsD.fYZyZu:nth-child(2)")
+	@FindBy(how = How.XPATH, using = "//*[@id=\"converterResult\"]/section/div[1]/div[2]")
 	WebElement elmSourceValue;
 
 	// Value converstionTitle
@@ -218,36 +218,87 @@ public class curExchange extends BasePage {
 
 	public void convRate() throws Throwable {
 		String actSingRes = elmconvRate.getText().toString();
-		   // regular expression for an integer number 
-       // String regex = "^[0-9]+(?:\\.[0-9]+)?$"; 
-          
-        /*// compiling regex 
-        Pattern p = Pattern.compile(regex); 
-          
-        // Creates a matcher that will match input against regex 
-        Matcher m = p.matcher(actSingRes); 
-        
-        if(m.find() && m.group().equals(actSingRes)) {
-            System.out.println(actSingRes + " is a valid float number"); }
-        
-        else {
-            System.out.println(actSingRes + " is not a valid float number"); }
-        */
-        
-		if (actSingRes.matches("^[-+]?\\d*\\.?\\d*$")) {
+		
+		if (actSingRes.matches("^\\d+([\\,]\\d+)*([\\.]\\d+)?$")) {
 			//Assert.assertThat(actSingRes.matches("^[-+]?\\d*\\.?\\d*$"));
-			assertTrue(actSingRes.matches("^[-+]?\\d*\\.?\\d*$"));
+			assertTrue(actSingRes.matches("^\\d+([\\,]\\d+)*([\\.]\\d+)?$"));
 			//assertThat(actSingRes).matches("[A-Za-z]*[ ]{3}ID: [0-9]*[ ]{3}VERSION: [0-9]*");
 		
 
 			System.out.println("Converstion Rate: "+ actSingRes + " Matched");
 		} else {
-			assertFalse(actSingRes.matches("^[-+]?\\d*\\.?\\d*$"));
+			assertFalse(actSingRes.matches("^\\d+([\\,]\\d+)*([\\.]\\d+)?$"));
 
 			System.out.println("Conversion Rate: " + actSingRes + "Not Matched");
 		
 	}
         }
+	
+	
+	/*public void conRate() throws Throwable{
+		String actSingRes = elmSourceValue.getText().toString();
+		
+		String[] strings = new String[1];
+
+	    strings[0] = actSingRes;
+	 
+
+	    Pattern pattern = Pattern.compile("[-+]?[0-9]*\\.?[0-9]+");
+
+	    for (String string : strings)
+	    {
+	        Matcher matcher = pattern.matcher(string);
+	        while(matcher.find()){
+	            System.out.println("# float value: " + matcher.group().indexOf(0));
+	           // float conVRate = matcher.group().indexOf(0);
+	             System.out.println("#float value:"+matcher.group());
+	             
+	            
+	        }
+	    }
+		
+	}*/
+	
+	public void convRate_single_source(String CurCode) throws Throwable {
+		String actSingRes = elmSourceValue.getText().toString();
+		  
+		
+		if (elmDestValue.isDisplayed() &&  actSingRes.matches("^\\d+([\\,]\\d+)*([\\.]\\d+)?$")) {
+			//Assert.assertThat(actSingRes.matches("^[-+]?\\d*\\.?\\d*$"));
+			assertTrue(actSingRes.matches("^\\d+([\\,]\\d+)*([\\.]\\d+)?$"));
+			//assertThat(actSingRes).matches("[A-Za-z]*[ ]{3}ID: [0-9]*[ ]{3}VERSION: [0-9]*");
+		
+
+			System.out.println("Converstion Rate: "+ actSingRes + " Matched");
+		} else {
+			assertFalse(actSingRes.matches("^\\d+([\\,]\\d+)*([\\.]\\d+)?$"));
+
+			System.out.println("Conversion Rate: " + actSingRes + "Not Matched");
+		
+	}
+        }
+	
+	public void convRate_single_dest(String curCode) throws Throwable {
+		String actSingRes = elmDestValue.getText().toString();
+		  
+		
+		if (elmDestValue.isDisplayed() && actSingRes.matches("^\\d+([\\,]\\d+)*([\\.]\\d+)?$") ) {
+			//Assert.assertThat(actSingRes.matches("^[-+]?\\d*\\.?\\d*$"));
+			assertTrue(actSingRes.matches("^\\d+([\\,]\\d+)*([\\.]\\d+)?$"));
+			//assertThat(actSingRes).matches("[A-Za-z]*[ ]{3}ID: [0-9]*[ ]{3}VERSION: [0-9]*");
+		
+
+			System.out.println("Converstion Rate single : "+ actSingRes + " Matched");
+		} else {
+			assertFalse(actSingRes.matches("^\\d+([\\,]\\d+)*([\\.]\\d+)?$"));
+
+			System.out.println("Conversion Rate: " + actSingRes + "Not Matched");
+		
+	}
+        }
+	
+	
+	
 	    
 
 //Verify Single Currency destination value

@@ -273,6 +273,16 @@ public class curExchangeSteps extends DriverHandler {
 	public void conv_rate() throws Throwable {
 		new curExchange(wd).convRate();
 	}
+	
+	@Then("^I Checked Converstion Rate Source \"([^\"]*)\"$")
+	public void conv_rate_source(String CurCode) throws Throwable {
+		new curExchange(wd).convRate_single_source(CurCode);
+	}
+	
+	@Then("^I Checked Converstion Rate Dest \"([^\"]*)\"$")
+	public void conv_rate_dest(String CurCode) throws Throwable {
+		new curExchange(wd).convRate_single_dest(CurCode);
+	}
 
 	// Verify single_cur_dest_value
 	@Then("^I Verify Converstion Result Title \"([^\"]*)\"$")
